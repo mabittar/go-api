@@ -1,5 +1,5 @@
-# Use the official Go image
-FROM golang:1.24-alpine
+# Build stage
+FROM golang:1.24-alpine AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -13,6 +13,15 @@ COPY . .
 
 # Build the application
 RUN go build -o main .
+
+# Final stage
+FROM scratch
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the binary from the build stage
+COPY --from=builder /app/main .
 
 # Expose the API port
 EXPOSE 8080
