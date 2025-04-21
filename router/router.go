@@ -11,6 +11,7 @@ func InitRouter() *mux.Router {
 	r.HandleFunc("/health", handlers.HealthCheckHandler).Methods("GET")
 	r.HandleFunc("/", handlers.HelloHandler).Methods("GET")
 	r.HandleFunc("/ping", handlers.PingHandler).Methods("GET")
+	r.HandleFunc("/user", handlers.GetUsersHandler). Methods("GET")
 
 	return r
 }

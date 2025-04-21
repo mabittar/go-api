@@ -15,7 +15,7 @@ COPY . .
 RUN go build -o main .
 
 # Final stage
-FROM scratch
+FROM alpine:latest
 
 # Set the working directory
 WORKDIR /app
